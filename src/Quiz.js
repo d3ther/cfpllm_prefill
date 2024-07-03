@@ -20,6 +20,8 @@ const questions = [
       emailDepartureTime: "20:50",
       emailArrivalDate: "Fri, 11 Jun",
       emailArrivalTime: "22:10",
+      flightDepartureDateTime: "2024-06-11T09:50", // Screen2, Old Flight
+      flightArrivalDateTime: "2024-06-11T22:10", // Screen2, Old Flight
     },
     newData: {
       pnr: "V86T8W",
@@ -28,22 +30,18 @@ const questions = [
       departureDate: "11 June 2024",
       arrivalTime: "23:45",
       arrivalDate: "11 June 2024",
-      emailDepartureDate: "Wed, 01 May",
-      emailDepartureTime: "07:35",
-      emailArrivalDate: "Wed, 01 May",
-      emailArrivalTime: "08:35",
     },
     question: "Question 1",
-    airline: "VZ",
+    airline: "VZ", // determine ini nanti munculin template sebelah kiri yg mana
     airlineName: "Vietjet Airlines",
     prefill: [
-      "V86T8W",
+      "Prefill1",
       "Prefill2",
       "Prefill3",
       "Prefill4",
       "Prefill5",
       "Prefill6",
-      "2024-06-12T19:30",
+      "2024-06-12T20:00",
       "2024-06-12T20:00",
     ],
   },
@@ -64,16 +62,16 @@ const questions = [
       emailDepartureTime: "06:45",
       emailArrivalDate: "Wed, 01 May",
       emailArrivalTime: "07:45",
+      flightDepartureDateTime: "2024-05-01T06:45",
+      flightArrivalDateTime: "2024-05-01T07:45",
     },
     newData: {
       pnr: "HEGCVE",
       flightCode: "FY-1426",
       departureTime: "0735HRS",
       departureDate: "1 May 2024",
-      emailDepartureDate: "Wed, 01 May",
-      emailDepartureTime: "07:35",
-      emailArrivalDate: "Wed, 01 May",
-      emailArrivalTime: "08:35",
+      flightDepartureDateTime: "2024-05-01T07:35",
+      flightArrivalDateTime: "2024-05-01T08:35",
     },
     question: "Question 1",
     airline: "FY",
@@ -106,6 +104,8 @@ const questions = [
       emailDepartureTime: "07:00",
       emailArrivalDate: "Tue, 25 Jun",
       emailArrivalTime: "07:45",
+      flightDepartureDateTime: "2024-06-25T07:00",
+      flightArrivalDateTime: "2024-06-25T07:45",
     },
     newData: {
       pnr: "X_BZRIBA",
@@ -113,10 +113,8 @@ const questions = [
       departureTime: "11H00",
       departureDateEN: "01MAY",
       departureDateVN: "01 THANG 05",
-      emailDepartureDate: "Tue, 27 Jun",
-      emailDepartureTime: "07:00",
-      emailArrivalDate: "Tue, 27 Jun",
-      emailArrivalTime: "07:45",
+      flightDepartureDateTime: "2024-06-27T07:00",
+      flightArrivalDateTime: "2024-06-27T07:45",
     },
     question: "Question 2",
     airline: "VN",
@@ -151,6 +149,8 @@ const questions = [
       emailDepartureTime: "07:00",
       emailArrivalDate: "Tue, 25 Jun",
       emailArrivalTime: "07:45",
+      flightDepartureDateTime: "2024-06-11T20:50",
+      flightArrivalDateTime: "2024-06-11T22:10",
     },
     newData: {
       pnr: "X_BZRIBA",
@@ -158,10 +158,8 @@ const questions = [
       departureTime: "11H00",
       departureDateEN: "01MAY",
       departureDateVN: "01 THANG 05",
-      emailDepartureDate: "Tue, 27 Jun",
-      emailDepartureTime: "07:00",
-      emailArrivalDate: "Tue, 27 Jun",
-      emailArrivalTime: "07:45",
+      flightDepartureDateTime: "2024-06-11T20:50",
+      flightArrivalDateTime: "2024-06-11T22:10",
     },
     question: "Question 1",
     airline: "FY",
@@ -223,7 +221,7 @@ const LeftContainer = ({
 }) => {
   return (
     <div className="html-css-component">
-      {airline === "VZ" && (
+      {airline == "VZ" && (
         <FirstContainerVZ
           titleText={titleText}
           oldData={oldData}
@@ -235,7 +233,7 @@ const LeftContainer = ({
           screen={screen}
         />
       )}
-      {airline === "VN" && (
+      {airline == "VN" && (
         <FirstContainerVN
           titleText={titleText}
           oldData={oldData}
@@ -247,7 +245,7 @@ const LeftContainer = ({
           screen={screen}
         />
       )}
-      {airline === "FY" && (
+      {airline == "FY" && (
         <FirstContainerFY
           titleText={titleText}
           oldData={oldData}
@@ -312,11 +310,15 @@ const FirstContainerVZ = ({
               We regret to inform you that your Thai VietJet Air flight{" "}
               <span style={{ color: "#000000" }}>
                 <strong>{oldData.flightCode}</strong>
-                &nbsp;from&nbsp; <strong>{oldData.originAirport}</strong>
+                &nbsp;from&nbsp;{" "}
+                <strong>
+                  {oldData.originAirport} ({oldData.originAirportCode})
+                </strong>
                 &nbsp; <strong>{oldData.departureTime}</strong>
                 &nbsp;to&nbsp;{" "}
                 <strong>
-                  {oldData.destinationAirport} {oldData.arrivalTime}
+                  {oldData.destinationAirport} ({oldData.destinationAirportCode}
+                  ) {oldData.arrivalTime}
                 </strong>
                 &nbsp;on&nbsp; <strong>{oldData.departureDate}</strong> has been
                 cancelled due to " <strong>OPERATIONAL REASON</strong>
@@ -343,7 +345,8 @@ const FirstContainerVZ = ({
               <span style={{ color: "#000000" }}>
                 Depart from&nbsp;{" "}
                 <strong>
-                  {oldData.originAirport} {oldData.departureTime}
+                  {oldData.originAirport} ({oldData.originAirportCode}){" "}
+                  {newData.departureTime}
                 </strong>
                 &nbsp;local time.{" "}
               </span>
@@ -352,7 +355,8 @@ const FirstContainerVZ = ({
               <span style={{ color: "#000000" }}>
                 Arrival to{" "}
                 <strong>
-                  {oldData.destinationAirport} {newData.arrivalTime}
+                  {oldData.destinationAirport} ({oldData.destinationAirportCode}
+                  ) {newData.arrivalTime}
                 </strong>
                 &nbsp;local time.{" "}
               </span>
@@ -377,7 +381,7 @@ const FirstContainerVZ = ({
               <a
                 href="https://th.vietjetair.com/search-reservation"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener"
               >
                 <span style={{ color: "#3598db" }}>
                   <strong>Manage Booking</strong>
@@ -402,7 +406,7 @@ const FirstContainerVZ = ({
               <a
                 href="https://th.vietjetair.com/ecs"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener"
               >
                 <span style={{ color: "#3598db" }}>
                   <strong>Electronic Credit Shell</strong>
@@ -425,7 +429,7 @@ const FirstContainerVZ = ({
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSd7j_E8hFctZW-TTFXAnnqA3-Jo6EkGGfP9EU23pBf-FTL8BA/viewform"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener"
               >
                 <span style={{ color: "#3598db" }}>
                   <strong>Full Refund</strong>
@@ -1507,7 +1511,38 @@ const SecondRightContainer = ({
   enabledFields,
   airline,
   oldData,
+  flightDateTimeDeparture,
+  setFlightDateTimeDeparture,
+  flightDateTimeArrival,
+  setFlightDateTimeArrival,
 }) => {
+  // Handle the change event of the input
+  const handleChangeDateDeparture = (event) => {
+    const value = event.target.value;
+    if (value) {
+      setFlightDateTimeDeparture(value);
+      setFormattedDateDeparture(value);
+    }
+  };
+
+  const handleChangeDateArrival = (event) => {
+    const value = event.target.value;
+    if (value) {
+      setFlightDateTimeArrival(value);
+      setFormattedDateArrival(value);
+    }
+  };
+
+  const [dateTime, setDateTime] = useState([
+    formatDateTime(oldData.flightDepartureDateTime),
+    formatDateTime(oldData.flightArrivalDateTime),
+    formatDateTime(prefill[6]),
+    formatDateTime(prefill[7]),
+  ]);
+
+  const [formattedDateDeparture, setFormattedDateDeparture] = useState("");
+  const [formattedDateArrival, setFormattedDateArrival] = useState("");
+
   return (
     <div className="text-fields-component">
       <div className="horizontalAlign">
@@ -1595,7 +1630,11 @@ const SecondRightContainer = ({
         <div className="secondScreen__horizontalContainer">
           <div className="secondScreen__contentContainer">
             <p className="firstTextContent title">Departure Date & Time</p>
-            <input type="text" value={oldData.departureDate} />
+            <input
+              type="text"
+              // value={setFormattedDate(oldData.flightDepartureDateTime)}
+              value={dateTime[0]}
+            />
             <input
               type="checkbox"
               checked={enabledFields[6]}
@@ -1606,8 +1645,12 @@ const SecondRightContainer = ({
             <p className="firstTextContent title">Departure Date & Time</p>
             <input
               type="datetime-local"
-              value={userAnswers[6] !== undefined ? userAnswers[6] : prefill[6]}
-              onChange={(e) => onInputChange(e, 6)}
+              value={
+                formattedDateDeparture !== ""
+                  ? formattedDateDeparture
+                  : prefill[6]
+              }
+              onChange={handleChangeDateDeparture}
               disabled={withCheckboxes && !enabledFields[6]}
             />
           </div>
@@ -1617,7 +1660,7 @@ const SecondRightContainer = ({
         <div className="secondScreen__horizontalContainer">
           <div className="secondScreen__contentContainer">
             <p className="firstTextContent title">Arrival Date & Time</p>
-            <input type="text" value={oldData.arrivalDate} />
+            <input type="text" value={dateTime[1]} />
             <input
               type="checkbox"
               checked={enabledFields[7]}
@@ -1628,8 +1671,13 @@ const SecondRightContainer = ({
             <p className="firstTextContent title">Arrival Date & Time</p>
             <input
               type="datetime-local"
-              value={userAnswers[7] !== undefined ? userAnswers[7] : prefill[7]}
-              onChange={(e) => onInputChange(e, 7)}
+              // value={
+              //   userAnswers[7] !== undefined ? userAnswers[7] : dateTime[3]
+              // }
+              value={
+                formattedDateArrival !== "" ? formattedDateArrival : prefill[7]
+              }
+              onChange={handleChangeDateArrival}
               disabled={withCheckboxes && !enabledFields[7]}
             />
           </div>
@@ -1672,7 +1720,16 @@ const EmailPreviewContainer = ({
   airline,
   airlineName,
   prefill,
+  flightDateTimeDeparture,
+  flightDateTimeArrival,
 }) => {
+  console.log("flightDateTimeDeparture", flightDateTimeDeparture);
+  const formattedFlightDateTimeDeparture = formatDate(flightDateTimeDeparture); // 01 Jun 2023
+  const formattedFlightTimeDeparture = formatEmailTime(flightDateTimeDeparture); // 01:11
+
+  const formattedFlightDateTimeArrival = formatDate(flightDateTimeArrival);
+  const formattedFlightTimeArrival = formatEmailTime(flightDateTimeArrival);
+
   return (
     <div>
       <div className="ui top attached label found">
@@ -2320,7 +2377,7 @@ const EmailPreviewContainer = ({
                                                         }}
                                                       >
                                                         {
-                                                          newData.emailDepartureTime
+                                                          formattedFlightTimeDeparture
                                                         }
                                                       </b>
                                                       <div
@@ -2333,7 +2390,7 @@ const EmailPreviewContainer = ({
                                                         }}
                                                       >
                                                         {
-                                                          newData.emailDepartureDate
+                                                          formattedFlightDateTimeDeparture
                                                         }
                                                       </div>
                                                     </td>
@@ -2564,7 +2621,7 @@ const EmailPreviewContainer = ({
                                                         }}
                                                       >
                                                         {
-                                                          newData.emailArrivalTime
+                                                          formattedFlightTimeArrival
                                                         }
                                                       </b>
                                                       <div
@@ -2577,7 +2634,7 @@ const EmailPreviewContainer = ({
                                                         }}
                                                       >
                                                         {
-                                                          newData.emailArrivalDate
+                                                          formattedFlightDateTimeArrival
                                                         }
                                                       </div>
                                                     </td>
@@ -4576,14 +4633,49 @@ const EmailPreviewContainer = ({
   );
 };
 
+// Function to format the date
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { weekday: "short" };
+  const weekday = date.toLocaleDateString("en-US", options);
+  const day = date.getDate();
+  const month = date.toLocaleDateString("en-US", { month: "short" });
+  return `${weekday}, ${String(day).padStart(2, "0")} ${month}`;
+};
+
+const formatEmailTime = (dateString) => {
+  const date = new Date(dateString);
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
+const formatDateTime = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleDateString("en-US", { month: "long" });
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${day} ${month} ${year}, ${hours}:${minutes}`;
+};
+
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentScreen, setCurrentScreen] = useState(0);
   const [userAnswers, setUserAnswers] = useState(
     questions.map((q) => q.prefill.slice())
   );
+
   const [enabledFields, setEnabledFields] = useState(
     questions.map((q) => new Array(q.prefill.length).fill(false))
+  );
+  const currentQuestionData = questions[currentQuestion];
+  const [flightDateTimeDeparture, setFlightDateTimeDeparture] = useState(
+    currentQuestionData.prefill[6]
+  );
+  const [flightDateTimeArrival, setFlightDateTimeArrival] = useState(
+    currentQuestionData.prefill[7]
   );
 
   const [startTime, setStartTime] = useState(Date.now());
@@ -4591,7 +4683,7 @@ const Quiz = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(userAnswers);
+    // console.log(userAnswers);
   }, [userAnswers]);
 
   const handleInputChange = (e, index) => {
@@ -4636,8 +4728,6 @@ const Quiz = () => {
     }
   };
 
-  const currentQuestionData = questions[currentQuestion];
-
   return (
     <div className="mainContainer">
       {currentScreen === 0 && (
@@ -4652,7 +4742,7 @@ const Quiz = () => {
                 question={currentQuestionData.question}
                 airline={currentQuestionData.airline}
                 airlineName={currentQuestionData.airlineName}
-                prefill={currentQuestionData.airlineName}
+                prefill={currentQuestionData.prefill}
                 screen={currentScreen}
               />
             </div>
@@ -4691,7 +4781,7 @@ const Quiz = () => {
                 question={currentQuestionData.question}
                 airline={currentQuestionData.airline}
                 airlineName={currentQuestionData.airlineName}
-                prefill={currentQuestionData.airlineName}
+                prefill={currentQuestionData.prefill}
                 screen={currentScreen}
               />
             </div>
@@ -4714,6 +4804,10 @@ const Quiz = () => {
                 oldData={currentQuestionData.oldData}
                 newData={currentQuestionData.newData}
                 airline={currentQuestionData.airline}
+                flightDateTimeDeparture={flightDateTimeDeparture}
+                setFlightDateTimeDeparture={setFlightDateTimeDeparture}
+                flightDateTimeArrival={flightDateTimeArrival}
+                setFlightDateTimeArrival={setFlightDateTimeArrival}
               />
               <div className="buttonContainer">
                 <button className="prevButton" onClick={handlePrevScreen}>
@@ -4741,7 +4835,7 @@ const Quiz = () => {
                 question={currentQuestionData.question}
                 airline={currentQuestionData.airline}
                 airlineName={currentQuestionData.airlineName}
-                prefill={currentQuestionData.airlineName}
+                prefill={currentQuestionData.prefill}
                 screen={currentScreen}
               />
             </div>
@@ -4755,7 +4849,9 @@ const Quiz = () => {
                 question={currentQuestionData.question}
                 airline={currentQuestionData.airline}
                 airlineName={currentQuestionData.airlineName}
-                prefill={currentQuestionData.airlineName}
+                prefill={currentQuestionData.prefill}
+                flightDateTimeDeparture={flightDateTimeDeparture}
+                flightDateTimeArrival={flightDateTimeArrival}
               />
               <div className="buttonContainer">
                 <button className="prevButton" onClick={handlePrevScreen}>
