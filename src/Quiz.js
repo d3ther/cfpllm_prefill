@@ -545,36 +545,6 @@ const questions = [
   },
 ];
 
-// const LeftContainer = ({ textObject, titleText }) => {
-//   const { text, highlight } = textObject;
-
-//   // Split the text into words and wrap highlighted words in a span
-//   const parts = text.split(new RegExp(`(${highlight.join("|")})`, "gi"));
-
-//   return (
-//     <div className="html-css-component">
-//       {parts.map((part, index) => (
-//         <>
-//           <span
-//             key={index}
-//             className={highlight.includes(part) ? "highlighted" : ""}
-//           >
-//             {part}
-//           </span>
-//           <span
-//             key={index}
-//             className={highlight.includes(part) ? "highlighted" : ""}
-//           >
-//             alasjdflkajdf sentence alsdfladskjf highlighted dadskfjlask jf
-//           </span>
-//           <br />
-//           <br />
-//         </>
-//       ))}
-//     </div>
-//   );
-// };
-
 //VZ, VN, FY
 
 const LeftContainer = ({
@@ -1207,7 +1177,7 @@ const FirstContainerVN = ({
                                       alt=""
                                       className="from"
                                     />
-                                    {/* <img src="https://vna-reh.ngsd.vn/images/icons/email/to.png" alt="" class="to"> */}
+                                    {/* <img src="https://vna-reh.ngsd.vn/images/icons/email/to.png" alt="" className="to"> */}
                                   </div>
                                 </td>
 
@@ -1268,7 +1238,7 @@ const FirstContainerVN = ({
                                     className="rounded-full to"
                                     style={{ textAlign: "center" }}
                                   >
-                                    {/* <img src="https://vna-reh.ngsd.vn/images/icons/email/from.png" alt="" class="from"> */}
+                                    {/* <img src="https://vna-reh.ngsd.vn/images/icons/email/from.png" alt="" className="from"> */}
                                     <img
                                       src="https://vna-reh.ngsd.vn/images/icons/email/to.png"
                                       alt=""
@@ -1773,7 +1743,11 @@ const FirstRightContainer = ({
   withCheckboxes,
   handleCheckboxChange,
   enabledFields,
+  setFlightDateTimeDeparture,
+  setFlightDateTimeArrival,
 }) => {
+  setFlightDateTimeDeparture(prefill[6]);
+  setFlightDateTimeArrival(prefill[7]);
   return (
     <div className="text-fields-component">
       <div className="horizontalAlign">
@@ -1880,36 +1854,18 @@ const SecondRightContainer = ({
   airline,
   oldData,
   flightDateTimeDeparture,
-  setFlightDateTimeDeparture,
+  handleChangeDateDeparture,
   flightDateTimeArrival,
-  setFlightDateTimeArrival,
+  handleChangeDateArrival,
+  formattedDateDeparture,
+  formattedDateArrival,
 }) => {
-  // Handle the change event of the input
-  const handleChangeDateDeparture = (event) => {
-    const value = event.target.value;
-    if (value) {
-      setFlightDateTimeDeparture(value);
-      setFormattedDateDeparture(value);
-    }
-  };
-
-  const handleChangeDateArrival = (event) => {
-    const value = event.target.value;
-    if (value) {
-      setFlightDateTimeArrival(value);
-      setFormattedDateArrival(value);
-    }
-  };
-
   const [dateTime, setDateTime] = useState([
     formatDateTime(oldData.flightDepartureDateTime),
     formatDateTime(oldData.flightArrivalDateTime),
     formatDateTime(prefill[6]),
     formatDateTime(prefill[7]),
   ]);
-
-  const [formattedDateDeparture, setFormattedDateDeparture] = useState("");
-  const [formattedDateArrival, setFormattedDateArrival] = useState("");
 
   return (
     <div className="text-fields-component">
@@ -2014,8 +1970,8 @@ const SecondRightContainer = ({
             <input
               type="datetime-local"
               value={
-                formattedDateDeparture !== ""
-                  ? formattedDateDeparture
+                flightDateTimeDeparture !== ""
+                  ? flightDateTimeDeparture
                   : prefill[6]
               }
               onChange={handleChangeDateDeparture}
@@ -2043,7 +1999,9 @@ const SecondRightContainer = ({
               //   userAnswers[7] !== undefined ? userAnswers[7] : dateTime[3]
               // }
               value={
-                formattedDateArrival !== "" ? formattedDateArrival : prefill[7]
+                flightDateTimeArrival !== ""
+                  ? flightDateTimeArrival
+                  : prefill[7]
               }
               onChange={handleChangeDateArrival}
               disabled={withCheckboxes && !enabledFields[7]}
@@ -2091,7 +2049,6 @@ const EmailPreviewContainer = ({
   flightDateTimeDeparture,
   flightDateTimeArrival,
 }) => {
-  console.log("flightDateTimeDeparture", flightDateTimeDeparture);
   const formattedFlightDateTimeDeparture = formatDate(flightDateTimeDeparture); // 01 Jun 2023
   const formattedFlightTimeDeparture = formatEmailTime(flightDateTimeDeparture); // 01:11
 
@@ -2107,24 +2064,25 @@ const EmailPreviewContainer = ({
         </p>
       </div>
       <div className="text-fields-component">
-        <div class="jsx-1937648046 wcnB8G1zHlh2M_epx7eie">
-          <div class="jsx-1937648046">
-            <div class="Pz8OQbeub-yMNG2bBrcdk">
-              <div class="_1SWssdxrJMr8C3WOUlkIE3">
-                <div class="_2zyEiwrVa4jirjAshdlzha">Recipients</div>
-                <button class="ui mini basic button _2DDvq8jNkxad2Y1MJA-Vu3">
-                  <i aria-hidden="true" class="write icon"></i> Edit Recipients{" "}
+        <div className="jsx-1937648046 wcnB8G1zHlh2M_epx7eie">
+          <div className="jsx-1937648046">
+            <div className="Pz8OQbeub-yMNG2bBrcdk">
+              <div className="_1SWssdxrJMr8C3WOUlkIE3">
+                <div className="_2zyEiwrVa4jirjAshdlzha">Recipients</div>
+                <button className="ui mini basic button _2DDvq8jNkxad2Y1MJA-Vu3">
+                  <i aria-hidden="true" className="write icon"></i> Edit
+                  Recipients{" "}
                 </button>
               </div>
-              <div class="_9Yl4pfWAHx3Os73_MLAkv">
-                <div class="_3slibX1bacNjyzP1U-XUj_">
+              <div className="_9Yl4pfWAHx3Os73_MLAkv">
+                <div className="_3slibX1bacNjyzP1U-XUj_">
                   jon.nugroho@traveloka.com &lt;X_BZRIBA&gt;
                 </div>
               </div>
             </div>
-            <div class="MsxKWx9ED_qoMFw_780Oa">
-              <div class="_30WEd9Yz4jJR77YiiKwhuJ">Email</div>
-              <div class="_2zk8_MhJX3d_SUKIGKClvv">
+            <div className="MsxKWx9ED_qoMFw_780Oa">
+              <div className="_30WEd9Yz4jJR77YiiKwhuJ">Email</div>
+              <div className="_2zk8_MhJX3d_SUKIGKClvv">
                 <div>Customers may see different email</div>
                 <div>(e.g., different original departure time)</div>
               </div>
@@ -4595,7 +4553,7 @@ const EmailPreviewContainer = ({
                               }}
                             ></div>
                             {/* general disclaimer end */}
-                            {/* <div class="preflight-closing">
+                            {/* <div className="preflight-closing">
                         termsConditionMore
                       </div> */}
                             {/* Additional Purchases  */}
@@ -5046,6 +5004,26 @@ const Quiz = () => {
     currentQuestionData.prefill[7]
   );
 
+  // Handle the change event of the input
+  const handleChangeDateDeparture = (event) => {
+    const value = event.target.value;
+    if (value) {
+      setFlightDateTimeDeparture(value);
+      setFormattedDateDeparture(value);
+    }
+  };
+
+  const handleChangeDateArrival = (event) => {
+    const value = event.target.value;
+    if (value) {
+      setFlightDateTimeArrival(value);
+      setFormattedDateArrival(value);
+    }
+  };
+
+  const [formattedDateDeparture, setFormattedDateDeparture] = useState("");
+  const [formattedDateArrival, setFormattedDateArrival] = useState("");
+
   const [startTime, setStartTime] = useState(Date.now());
   const [intervalTimes, setIntervalTimes] = useState([]);
   const navigate = useNavigate();
@@ -5125,8 +5103,10 @@ const Quiz = () => {
                 withCheckboxes={false}
                 oldData={currentQuestionData.oldData}
                 newData={currentQuestionData.newData}
+                setFlightDateTimeDeparture={setFlightDateTimeDeparture}
+                setFlightDateTimeArrival={setFlightDateTimeArrival}
               />
-              <div class="nextButtonContainer">
+              <div className="nextButtonContainer">
                 <button className="nextButton" onClick={handleNextScreen}>
                   Next
                 </button>
@@ -5172,10 +5152,20 @@ const Quiz = () => {
                 oldData={currentQuestionData.oldData}
                 newData={currentQuestionData.newData}
                 airline={currentQuestionData.airline}
-                flightDateTimeDeparture={currentQuestionData.prefill[6]}
-                setFlightDateTimeDeparture={setFlightDateTimeDeparture}
-                flightDateTimeArrival={currentQuestionData.prefill[7]}
-                setFlightDateTimeArrival={setFlightDateTimeArrival}
+                formattedDateDeparture={formattedDateDeparture}
+                formattedDateArrival={formattedDateArrival}
+                flightDateTimeDeparture={
+                  flightDateTimeDeparture
+                    ? flightDateTimeDeparture
+                    : currentQuestionData.prefill[6]
+                }
+                handleChangeDateDeparture={handleChangeDateDeparture}
+                handleChangeDateArrival={handleChangeDateArrival}
+                flightDateTimeArrival={
+                  flightDateTimeArrival
+                    ? flightDateTimeArrival
+                    : currentQuestionData.prefill[7]
+                }
               />
               <div className="buttonContainer">
                 <button className="prevButton" onClick={handlePrevScreen}>
@@ -5218,8 +5208,16 @@ const Quiz = () => {
                 airline={currentQuestionData.airline}
                 airlineName={currentQuestionData.airlineName}
                 prefill={currentQuestionData.prefill}
-                flightDateTimeDeparture={currentQuestionData.prefill[6]}
-                flightDateTimeArrival={currentQuestionData.prefill[7]}
+                flightDateTimeDeparture={
+                  flightDateTimeDeparture
+                    ? flightDateTimeDeparture
+                    : currentQuestionData.prefill[6]
+                }
+                flightDateTimeArrival={
+                  flightDateTimeArrival
+                    ? flightDateTimeArrival
+                    : currentQuestionData.prefill[7]
+                }
               />
               <div className="buttonContainer">
                 <button className="prevButton" onClick={handlePrevScreen}>
