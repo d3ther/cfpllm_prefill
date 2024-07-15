@@ -5172,9 +5172,9 @@ const Quiz = () => {
                 oldData={currentQuestionData.oldData}
                 newData={currentQuestionData.newData}
                 airline={currentQuestionData.airline}
-                flightDateTimeDeparture={flightDateTimeDeparture}
+                flightDateTimeDeparture={currentQuestionData.prefill[6]}
                 setFlightDateTimeDeparture={setFlightDateTimeDeparture}
-                flightDateTimeArrival={flightDateTimeArrival}
+                flightDateTimeArrival={currentQuestionData.prefill[7]}
                 setFlightDateTimeArrival={setFlightDateTimeArrival}
               />
               <div className="buttonContainer">
@@ -5218,8 +5218,8 @@ const Quiz = () => {
                 airline={currentQuestionData.airline}
                 airlineName={currentQuestionData.airlineName}
                 prefill={currentQuestionData.prefill}
-                flightDateTimeDeparture={flightDateTimeDeparture}
-                flightDateTimeArrival={flightDateTimeArrival}
+                flightDateTimeDeparture={currentQuestionData.prefill[6]}
+                flightDateTimeArrival={currentQuestionData.prefill[7]}
               />
               <div className="buttonContainer">
                 <button className="prevButton" onClick={handlePrevScreen}>
