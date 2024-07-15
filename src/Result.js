@@ -5,48 +5,138 @@ const Result = () => {
   const location = useLocation();
   const { userAnswers, intervalTimes } = location.state;
 
-  // Define the correct answers
   const correctAnswers = [
+    // Question 0
     [
-      "V86T8W", // PNR
-      "Answer2", // Origin Airport
-      "Answer3", // Destination Airport
-      "Answer4", // Airline Code
-      "Answer5", // Airline Code di page 2
-      "VN-181", // Flight Code di page 2
-      // "2024-06-12T19:30",
-      // "2024-06-12T20:00",
+      "IJ56KL",
+      "JHB",
+      "KUL",
+      "VZ",
+      "VZ",
+      "VZ-1722",
+      "2024-09-05T10:15",
+      "2024-09-05T11:15",
     ],
-    // Add all correct answers for each question
+    // Question 1
     [
-      "Answer1", // PNR
-      "Answer2", // Origin Airport
-      "Answer3", // Destination Airport
-      "Answer4", // Airline Code
-      "Answer5", // Airline Code di page 2
-      "VN-182", // Flight Code di page 2
-      // "2024-06-12T19:30",
-      // "2024-06-12T20:00",
+      "V86T8W",
+      "CNX",
+      "BKK",
+      "VZ",
+      "VZ",
+      "VZ-119",
+      "2024-06-11T22:25",
+      "2024-06-11T23:45",
     ],
+    // Question 2
     [
-      "Answer1", // PNR
-      "Answer2", // Origin Airport
-      "Answer3", // Destination Airport
-      "Answer4", // Airline Code
-      "Answer5", // Airline Code di page 2
-      "VN-182", // Flight Code di page 2
-      // "2024-06-12T19:30",
-      // "2024-06-12T20:00",
+      "A12B34",
+      "HKT",
+      "BKK",
+      "VZ",
+      "VZ",
+      "VZ-1023",
+      "2024-07-15T19:45",
+      "2024-07-15T21:05",
     ],
+    // Question 3
     [
-      "Answer1", // PNR
-      "Answer2", // Origin Airport
-      "Answer3", // Destination Airport
-      "Answer4", // Airline Code
-      "Answer5", // Airline Code di page 2
-      "VN-182", // Flight Code di page 2
-      // "2024-06-12T19:30",
-      // "2024-06-12T20:00",
+      "C56D78",
+      "HAN",
+      "SGN",
+      "VZ",
+      "VZ",
+      "VZ-4089",
+      "2024-08-20T11:50",
+      "2024-08-20T13:50",
+    ],
+    // Question 4
+    [
+      "HEGCVE",
+      "SZB",
+      "PEN",
+      "FY",
+      "FY",
+      "FY-1426",
+      "2024-05-01T07:35",
+      "2024-05-01T08:35",
+    ],
+    // Question 5
+    [
+      "AB12CD",
+      "SZB",
+      "LGK",
+      "FY",
+      "FY",
+      "FY-1530",
+      "2024-07-10T08:15",
+      "2024-07-10T09:15",
+    ],
+    // Question 6
+    [
+      "EF34GH",
+      "PEN",
+      "KBR",
+      "FY",
+      "FY",
+      "FY-1620",
+      "2024-08-20T12:30",
+      "2024-08-20T13:30",
+    ],
+    // Question 7
+    [
+      "IJ56KL",
+      "JHB",
+      "KUL",
+      "FY",
+      "FY",
+      "FY-1722",
+      "2024-09-05T11:30",
+      "2024-09-05T12:30",
+    ],
+    // Question 8
+    [
+      "N89OU6",
+      "SGN",
+      "HAN",
+      "VN",
+      "VN",
+      "VN-246",
+      "2024-06-27T07:00",
+      "2024-06-27T07:45",
+    ],
+    // Question 9
+    [
+      "Y32TR9",
+      "DAD",
+      "SGN",
+      "VN",
+      "VN",
+      "VN-312",
+      "2024-08-15T14:00",
+      "2024-08-15T15:30",
+    ],
+    // Question 10
+    [
+      "F56KLM",
+      "CXR",
+      "HAN",
+      "VN",
+      "VN",
+      "VN-120",
+      "2024-09-20T10:00",
+      "2024-09-20T12:30",
+    ],
+    // Question 11
+    [
+      "G78NOP",
+      "SGN",
+      "DAD",
+      "VN",
+      "VN",
+      "VN-220",
+      "2024-11-10T16:30",
+      "2024-11-10T18:00",
     ],
   ];
 
